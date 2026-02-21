@@ -13,27 +13,27 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST || 'localhost',
     port: parseInt(process.env.DB_PORT || '3306'),
     dialect: 'mysql',
-    
+
     // Connection pool configuration
     pool: {
-      max: 5,        // Maximum number of connections
-      min: 0,        // Minimum number of connections
+      max: 5, // Maximum number of connections
+      min: 0, // Minimum number of connections
       acquire: 30000, // Maximum time to get connection (ms)
-      idle: 10000    // Maximum idle time before release (ms)
+      idle: 10000, // Maximum idle time before release (ms)
     },
-    
+
     // Logging configuration
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
-    
+
     // Timezone configuration
     timezone: '+00:00',
-    
+
     // Define options
     define: {
-      timestamps: true,      // Add createdAt and updatedAt
-      underscored: true,     // Use snake_case for columns
-      freezeTableName: true  // Don't pluralize table names
-    }
+      timestamps: true, // Add createdAt and updatedAt
+      underscored: true, // Use snake_case for columns
+      freezeTableName: true, // Don't pluralize table names
+    },
   }
 );
 

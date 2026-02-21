@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-import { config} from 'dotenv';
+import { config } from 'dotenv';
 import sequelize, { testConnection } from './config/database';
 
 // Load environment variables
@@ -13,10 +13,12 @@ const PORT = process.env.PORT || 3000;
 // MIDDLEWARE SETUP
 
 // Enable CORS
-app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
+    credentials: true,
+  })
+);
 
 // Parse JSON bodies
 app.use(express.json());
@@ -30,7 +32,7 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({
     status: 'success',
     message: 'HR Management API is running',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
@@ -46,8 +48,8 @@ app.get('/api', (req: Request, res: Response) => {
       departments: '/api/departments (coming soon)',
       attendance: '/api/attendance (coming soon)',
       leaves: '/api/leaves (coming soon)',
-      payroll: '/api/payroll (coming soon)'
-    }
+      payroll: '/api/payroll (coming soon)',
+    },
   });
 });
 
@@ -55,7 +57,7 @@ app.get('/api', (req: Request, res: Response) => {
 app.use((req: Request, res: Response) => {
   res.status(404).json({
     status: 'error',
-    message: 'Route not found'
+    message: 'Route not found',
   });
 });
 
@@ -64,11 +66,11 @@ const startServer = async () => {
   try {
     // Test database connection
     await testConnection();
-    
+
     // Sync database (create tables)
     await sequelize.sync({ alter: true });
     console.log('✅ Database synced successfully');
-    
+
     // Start listening
     app.listen(PORT, () => {
       console.log('=================================');

@@ -1,17 +1,11 @@
 {
   "compilerOptions": {
     // File Layout
+    "target": "esnext",
+    "module": "commonjs",
     "rootDir": "./src",
     "outDir": "./dist",
-
-    // Environment Settings
-    "module": "commonjs",
-    "target": "esnext",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
+    "resolveJsonModule": true,
 
     // Other Outputs
     "sourceMap": true,
@@ -22,6 +16,9 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
 
+    // Ensure consistent casing in imports
+    "forceConsistentCasingInFileNames": true,
+
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
@@ -30,13 +27,17 @@
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
 
-    "esModuleInterop":true,
+    "removeComments": true,
+    "esModuleInterop": true,
     "strict": true,
     "jsx": "react-jsx",
+    "types": ["node", "jest"],
     "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
-  }
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

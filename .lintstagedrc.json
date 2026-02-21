@@ -1,0 +1,8 @@
+{
+  "*.ts": [
+    "eslint --fix --config eslint.config.mjs",
+    "prettier --write",
+    "jest --bail --findRelatedTests --passWithNoTests --coverage=false"
+  ],
+  "*.{json,md}": ["prettier --write"]
+}
