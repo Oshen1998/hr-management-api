@@ -10,9 +10,7 @@ config();
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
-// ====================
 // MIDDLEWARE SETUP
-// ====================
 
 // Enable CORS
 app.use(cors({
@@ -26,10 +24,7 @@ app.use(express.json());
 // Parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 
-// ====================
 // ROUTES
-// ====================
-
 // Health check endpoint
 app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({
@@ -64,10 +59,7 @@ app.use((req: Request, res: Response) => {
   });
 });
 
-// ====================
 // START SERVER
-// ====================
-
 const startServer = async () => {
   try {
     // Test database connection
@@ -80,13 +72,13 @@ const startServer = async () => {
     // Start listening
     app.listen(PORT, () => {
       console.log('=================================');
-      console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`📝 Environment: ${process.env.NODE_ENV}`);
-      console.log(`🔗 URL: http://localhost:${PORT}`);
+      console.log(`Server running on port ${PORT}`);
+      console.log(`Environment: ${process.env.NODE_ENV}`);
+      console.log(`API_BASE_URL: http://localhost:${PORT}`);
       console.log('=================================');
     });
   } catch (error) {
-    console.error('❌ Failed to start server:', error);
+    console.error('Failed to start server:', error);
     process.exit(1);
   }
 };
