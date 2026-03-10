@@ -2,6 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 import sequelize, { testConnection } from './config/database';
+import authRoutes from './routes/auth';
+import { initializeDatabase } from './services/database-init.service';
 
 // Load environment variables
 config();
@@ -35,6 +37,9 @@ app.get('/health', (req: Request, res: Response) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+// Auth routes
+app.use('/api/auth', authRoutes);
 
 // API base route
 app.get('/api', (req: Request, res: Response) => {
@@ -71,13 +76,14 @@ const startServer = async () => {
     await sequelize.sync({ alter: true });
     console.log('✅ Database synced successfully');
 
+    // Initialize database with default data
+    await initializeDatabase();
+
     // Start listening
     app.listen(PORT, () => {
-      console.log('=================================');
       console.log(`Server running on port ${PORT}`);
       console.log(`Environment: ${process.env.NODE_ENV}`);
       console.log(`API_BASE_URL: http://localhost:${PORT}`);
-      console.log('=================================');
     });
   } catch (error) {
     console.error('Failed to start server:', error);

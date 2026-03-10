@@ -1,6 +1,5 @@
 {
   "name": "hr-management-api",
-  "packageManager": "yarn@4.9.1",
   "description": "HR Management System API with Express, TypeScript, and Sequelize",
   "main": "dist/server.js",
   "module": "commonjs",
@@ -32,13 +31,21 @@
   ],
   "author": "Oshen Dikkumbura",
   "dependencies": {
+    "@types/qrcode": "^1.5.6",
+    "@types/xml2js": "^0.4.14",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mysql2": "^3.17.4",
-    "sequelize": "^6.37.7"
+    "passport": "^0.7.0",
+    "passport-saml": "^3.2.4",
+    "qrcode": "^1.5.4",
+    "sequelize": "^6.37.7",
+    "speakeasy": "^2.0.0",
+    "uuid": "^13.0.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -50,6 +57,8 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.3.0",
+    "@types/passport": "^1.0.17",
+    "@types/speakeasy": "^2.0.10",
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.56.0",
     "@typescript-eslint/parser": "^8.56.0",
