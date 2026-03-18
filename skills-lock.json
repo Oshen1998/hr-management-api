@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "express-rest-api": {
+      "source": "pluginagentmarketplace/custom-plugin-nodejs",
+      "sourceType": "github",
+      "computedHash": "3dbdcd641db7b87a2650016f872ac64643b80efab945af2f1ee151699965f84e"
+    },
+    "express-typescript": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "356f5459a3ec3cddc3500f4c00039d61c8f950fb367d6f11495d7f5d41ea57e9"
+    }
+  }
+}
