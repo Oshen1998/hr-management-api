@@ -2,8 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 import sequelize, { testConnection } from './config/database';
-import authRoutes from './routes/auth';
-import { initializeDatabase } from './services/database-init.service';
+// import { initializeDatabase } from './services/database-init.service';
 
 // Load environment variables
 config();
@@ -38,9 +37,6 @@ app.get('/health', (req: Request, res: Response) => {
   });
 });
 
-// Auth routes
-app.use('/api/auth', authRoutes);
-
 // API base route
 app.get('/api', (req: Request, res: Response) => {
   res.status(200).json({
@@ -69,15 +65,15 @@ app.use((req: Request, res: Response) => {
 // START SERVER
 const startServer = async () => {
   try {
-    // Test database connection
-    await testConnection();
+    try {
+      await testConnection();
+      await sequelize.sync();
+      console.log('Database synced successfully');
+    } catch (dbError) {
+      console.warn('Database unavailable. Starting API without database sync.', dbError);
+    }
 
-    // Sync database (create tables)
-    await sequelize.sync({ alter: true });
-    console.log('✅ Database synced successfully');
-
-    // Initialize database with default data
-    await initializeDatabase();
+    // await initializeDatabase();
 
     // Start listening
     app.listen(PORT, () => {
